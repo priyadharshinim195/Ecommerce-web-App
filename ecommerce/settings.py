@@ -3,7 +3,7 @@ import os
 import cloudinary
 import dj_database_url
 
-# ... மற்ற code ...
+
 
 cloudinary.config(
     cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME', 'dgklj999k'),
@@ -73,7 +73,7 @@ INSTALLED_APPS = [
 ]
 
 
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -112,24 +112,40 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # import os
 # import dj_database_url
 
-# DATABASE_URL = os.environ.get('DATABASE_URL')
-# if DATABASE_URL:
-#     DATABASES = {
-#         'default': dj_database_url.parse(DATABASE_URL)
-#     }
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': 'blog_db_khno',
-#             'USER': 'blog_db_khno_user',
-#             'PASSWORD': '3BMZlzRykpaUDGXLSvnVwt01ZTVoc4AQ',
-#             'HOST': 'dpg-d7k6cusp3tds73bc1ku0-a.oregon-postgres.render.com',
-#             'PORT': '5432',
-#         }
-#     }
+import os
+import dj_database_url
 
+DEBUG = False
 
+ALLOWED_HOSTS = ['*']
+
+# Cloudinary - Enable பண்ணு
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# Database - PostgreSQL for Render
+DATABASE_URL = os.environ.get('DATABASE_URL')
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL)
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ecommerce',
+            'USER': 'root',
+            'PASSWORD': 'root',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
+    }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',  
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -157,6 +173,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
 
 
 # Internationalization
