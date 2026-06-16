@@ -1,5 +1,19 @@
+# Python
 *.pyc
 __pycache__/
+
+# Django
 db.sqlite3
 media/
+staticfiles/
+
+# Large files
 *.zip
+*.sql
+*.mp4
+*.mp3
+
+# Environment
+.env
+venv/
+env/
